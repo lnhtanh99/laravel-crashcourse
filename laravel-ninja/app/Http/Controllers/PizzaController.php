@@ -40,9 +40,10 @@ class PizzaController extends Controller
         $pizza->name = request('name');
         $pizza->type = request('type');
         $pizza->base = request('base');
-        $pizza->price = request('price');
+        $pizza->toppings = request('toppings');
 
         $pizza->save();
+
         return redirect('/')->with('mssg', 'Thanks for your order');
     }
 }
