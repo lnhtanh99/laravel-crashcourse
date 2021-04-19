@@ -22,3 +22,7 @@ Route::post('/pizzas', 'PizzaController@store');
 Route::get('/pizzas/{id}', 'PizzaController@show');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
