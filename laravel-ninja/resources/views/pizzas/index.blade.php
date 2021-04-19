@@ -18,7 +18,7 @@
         @foreach ($pizzas as $pizza)
             <div class="pizza-item">
                 <img src="/img/pizza.png" alt="pizza">
-                <h4><a href="/pizzas/{{ $pizza->id }}">{{ $pizza->name }}</a></h4>
+                <h4><a href="{{ route('pizzas.index', $pizza->id) }}">{{ $pizza->name }}</a></h4>
             </div>
             {{-- if-else  statement in blade --}}
             {{-- @if ($pizza->price >= 15)

@@ -10,8 +10,9 @@
             <li>{{ $topping }}</li>
         @endforeach
     </ul>
-    <form action="#" method="get">
+    <form action="{{ route('pizzas.destroy', $pizza->id) }}" method="POST">
         @csrf
+        @method('DELETE')
         <button type="submit">Complete Order</button>
     </form>
 

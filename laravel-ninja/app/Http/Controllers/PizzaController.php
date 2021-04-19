@@ -7,6 +7,14 @@ use App\Pizza;
 
 class PizzaController extends Controller
 {
+    //second way to protecting route -> using construct methods in controller
+    //use this way to protect all routes in this controller
+    //if you want to execpt some route, add except methods
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['store', 'create']);
+    }
+
     public function index()
     {
         //get data from database and pass it as an array into the view
@@ -31,11 +39,13 @@ class PizzaController extends Controller
         return view('pizzas.show', ['pizza' => $pizza]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('pizzas.create');
     }
 
-    public function store(){
+    public function store()
+    {
         $pizza = new Pizza();
         $pizza->name = request('name');
         $pizza->type = request('type');
@@ -45,5 +55,13 @@ class PizzaController extends Controller
         $pizza->save();
 
         return redirect('/')->with('mssg', 'Thanks for your order');
+    }
+
+    public function destroy($id)
+    {
+        $pizza = Pizza::findOrFail($id);
+        $pizza->delete();
+
+        return redirect('/pizzas');
     }
 }
